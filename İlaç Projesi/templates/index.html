@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}Ana Sayfa{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <h1 class="display-4 text-center">
+            <i class="fas fa-hospital text-primary"></i> HealthTrack
+        </h1>
+        <p class="lead text-center">İlaç ve Randevu Takip Sistemi</p>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Bugünkü Randevular -->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-calendar-alt"></i> Bugünkü Randevular
+            </div>
+            <div class="card-body">
+                {% if schedule.appointments %}
+                    <div class="list-group">
+                    {% for appointment in schedule.appointments %}
+                        <div class="list-group-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h6 class="mb-1">{{ appointment.time }}</h6>
+                                <small class="text-muted">{{ appointment.date }}</small>
+                            </div>
+                            <p class="mb-1">{{ appointment.description }}</p>
+                            {% for user in users %}
+                                {% if user.id == appointment.user_id %}
+                                    <small class="text-primary">Hasta: {{ user.name }}</small>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-muted">Bugün için randevu bulunmuyor.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Bugünkü İlaçlar -->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-pills"></i> Bugünkü İlaçlar
+            </div>
+            <div class="card-body">
+                {% if schedule.medications %}
+                    <div class="list-group">
+                    {% for medication in schedule.medications %}
+                        <div class="list-group-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h6 class="mb-1">{{ medication.name }}</h6>
+                                <small class="text-muted">{{ medication.time }}</small>
+                            </div>
+                            <p class="mb-1">{{ medication.frequency }}</p>
+                            {% for user in users %}
+                                {% if user.id == medication.user_id %}
+                                    <small class="text-primary">Hasta: {{ user.name }}</small>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-muted">Bugün için ilaç hatırlatması bulunmuyor.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hızlı İşlemler -->
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-bolt"></i> Hızlı İşlemler
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="{{ url_for('users') }}" class="btn btn-primary btn-lg w-100 mb-2">
+                            <i class="fas fa-user-plus"></i> Yeni Hasta
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="{{ url_for('appointments') }}" class="btn btn-success btn-lg w-100 mb-2">
+                            <i class="fas fa-calendar-plus"></i> Yeni Randevu
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="{{ url_for('medications') }}" class="btn btn-info btn-lg w-100 mb-2">
+                            <i class="fas fa-prescription-bottle-medical"></i> Yeni İlaç
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,61 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Ahmet Yılmaz",
+            "age": 72,
+            "health_status": "Tansiyon, Diyabet",
+            "created_at": "2024-03-20T10:00:00"
+        },
+        {
+            "id": 2,
+            "name": "Emre",
+            "age": 21,
+            "health_status": "bel",
+            "created_at": "2025-06-08T14:08:22.133709"
+        },
+        {
+            "id": 3,
+            "name": "Özlem",
+            "age": 46,
+            "health_status": "Kalp rahatsızlığı",
+            "created_at": "2025-06-08T14:12:57.065084"
+        }
+    ],
+    "appointments": [
+        {
+            "id": 1,
+            "user_id": 1,
+            "date": "2024-03-21",
+            "time": "09:30",
+            "description": "Kardiyoloji kontrolü",
+            "created_at": "2024-03-20T10:00:00"
+        },
+        {
+            "id": 2,
+            "user_id": 3,
+            "date": "2025-06-08",
+            "time": "14:23",
+            "description": "kalp kontrol",
+            "created_at": "2025-06-08T14:13:26.155667"
+        }
+    ],
+    "medications": [
+        {
+            "id": 1,
+            "user_id": 1,
+            "name": "Coumadin 5mg",
+            "time": "08:00",
+            "frequency": "Günde bir kez",
+            "created_at": "2024-03-20T10:00:00"
+        },
+        {
+            "id": 2,
+            "user_id": 1,
+            "name": "Glucophage 1000mg",
+            "time": "12:00",
+            "frequency": "Günde iki kez",
+            "created_at": "2024-03-20T10:00:00"
+        }
+    ]
+}
